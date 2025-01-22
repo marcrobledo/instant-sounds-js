@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="MarcInstasounds.appcache">
+<html>
 <head>
 	<title>MarcInstasounds.js</title>
 	<!-- CHARSET -->
@@ -17,25 +17,25 @@
 	<!-- MANIFEST for Chrome-->	
 	<meta name="theme-color" content="#b2ff3a"/> <!-- <M46: specify Android bar color -->
 	<link rel="manifest" href="manifest.json"/> <!-- M39 -->
-	<link rel="icon" sizes="128x128" href="favicon.png"/> <!-- M31-M38 -->
+	<link rel="icon" sizes="128x128" href="assets/favicon.png"/> <!-- M31-M38 -->
 	<meta name="mobile-web-app-capable" content="yes"/> <!-- M31-M38/Safari -->
 	<meta name="apple-mobile-web-app-status-bar-style" content="#b2ff3a"/><!-- Safari -->
 
 	<!-- STYLE -->
-	<link type="text/css" rel="stylesheet" href="./MarcInstasounds.css" media="all"/>
+	<link type="text/css" rel="stylesheet" href="./instant-sounds.css" media="all"/>
 
 	<!-- JS -->
-	<script type="text/javascript" src="./MarcInstasounds.js"></script>
-	<script type="text/javascript" src="./instasounds_pack_example.js"></script> <!-- this is the audio collection file for MarcInstaSounds -->
+	<script type="text/javascript" src="./instant-sounds.js"></script>
+	<script type="text/javascript" src="./instant-sounds.soundpack.js"></script> <!-- this JS includes the list of your audios -->
 </head>
 <body>
 <div id="top-bar">
 	<span id="button-menu"></span><span id="title" class="title">MarcInstasounds.js</span>
-	<input type="text" id="input-search" onkeyup="MarcInstantSounds.search(this.value)" />
+	<input type="text" id="input-search" onkeyup="searchSounds(this.value)" />
 </div>
 
 <div id="overlay"></div>
-<div id="menu"><ul id="ul-menu"></ul><div id="copy">&copy; 2016-2017 Marc Robledo</div></div>
+<div id="menu"><ul id="ul-menu"></ul><div id="copy">&copy; 2016-2019 Marc Robledo</div></div>
 
 
 

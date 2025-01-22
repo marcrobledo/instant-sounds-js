@@ -1,12 +1,18 @@
 {
-	"short_name":"MarcInstasounds.js",
-	"name":"MarcInstasounds.js",
+	"short_name":"Instant Sounds JS",
+	"name":"Instant Sounds JS",
 	"icons":[
 		{
-			"src": "favicon.png",
+			"src": "assets/favicon.png",
 			"sizes": "128x128",
 			"type": "image/png",
 			"density": "1.0"
+		},
+		{
+			"src": "assets/favicon_maskabel.png",
+			"sizes": "160x160",
+			"type": "image/png",
+			"purpose": "any maskable"
 		}
 	],
 	"start_url": "index.html",
