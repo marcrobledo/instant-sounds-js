@@ -10,7 +10,7 @@
 		},
 		{
 			"src": "assets/favicon_maskable.png",
-			"sizes": "160x160",
+			"sizes": "any",
 			"type": "image/png",
 			"purpose": "any maskable"
 		}
@@ -18,6 +18,6 @@
 	"start_url": "index.html",
 	"display": "fullscreen",
 	"orientation": "portrait",
-	"theme_color": "#b2ff3a",
-	"background_color": "#b2ff3a"
+	"theme_color": "#88df03",
+	"background_color": "#88df03"
 }
