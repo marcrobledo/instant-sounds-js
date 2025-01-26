@@ -44,7 +44,7 @@
 
 		window.addEventListener('load', function(){
 			/* service worker */
-			if(SERVICE_WORKER_CACHE && location.protocol==='https:' && 'serviceWorker' in navigator && && window.location.hostname === 'www.marcrobledo.com')
+			if(SERVICE_WORKER_CACHE && location.protocol==='https:' && 'serviceWorker' in navigator && window.location.hostname === 'www.marcrobledo.com')
 				navigator.serviceWorker.register('/instant-sounds-js/_cache_service_worker.js', { scope: '/instant-sounds-js/' }); /* using absolute paths to avoid unexpected behaviour in GitHub Pages */
 
 			const info=InstantSounds.initialize(SOUNDPACK_EXAMPLE);
