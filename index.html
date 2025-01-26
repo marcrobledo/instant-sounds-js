@@ -26,20 +26,90 @@
 
 	<!-- JS -->
 	<script type="text/javascript" src="./instant-sounds.js"></script>
-	<script type="text/javascript" src="./instant-sounds.soundpack.js"></script> <!-- this JS includes the list of your audios -->
+	<script type="text/javascript" src="./instant-sounds.example.js"></script> <!-- this JS includes the list of your sounds -->
+	<script type="text/javascript"><!--
+		const SERVICE_WORKER_CACHE=true;
+
+		window.addEventListener('load', function(){
+			/* service worker */
+			if(SERVICE_WORKER_CACHE && location.protocol==='https:' && 'serviceWorker' in navigator)
+				navigator.serviceWorker.register('_cache_service_worker.js');
+
+			const info=InstantSounds.initialize(SOUNDPACK_EXAMPLE);
+			info.categories.forEach(function(category){
+				const li=document.createElement('li');
+				const label=document.createElement('label');
+				const radio=document.createElement('input');
+				const span=document.createElement('span');
+				
+				radio.type='radio';
+				radio.name='category';
+				radio.value=category;
+				radio.addEventListener('change', function(evt){
+					InstantSounds.filter({category:this.value});
+					document.getElementById('input-search').value='';
+				});
+				span.innerHTML=category;
+				
+				
+				li.appendChild(label);
+				label.appendChild(radio);
+				label.appendChild(span);
+				document.getElementById('categories').appendChild(li);
+			});
+
+			/* UI events */
+			document.getElementById('btn-filter').addEventListener('click', function(evt){
+				document.body.className=document.body.className==='show-menu'? '' : 'show-menu';
+			});
+			document.getElementById('overlay').addEventListener('click', function(evt){
+				document.body.className='';
+			});
+			document.getElementById('radio-category-all').addEventListener('click', function(evt){
+				document.getElementById('input-search').value='';
+				InstantSounds.filter({});
+			});
+			document.getElementById('input-search').addEventListener('input', function(evt){
+				InstantSounds.filter({search:this.value});
+				document.getElementById('radio-category-all').checked=true;
+			});
+			document.getElementById('input-search').addEventListener('keyup', function(evt){
+				if(evt.keyCode===13 && document.getElementById('sound-buttons').children.length)
+					document.body.className='';
+			});
+		});
+	--></script>
 </head>
 <body>
-<div id="top-bar">
-	<span id="button-menu"></span><span id="title" class="title">Instant Sounds JS</span>
-	<input type="text" id="input-search" onkeyup="searchSounds(this.value)" />
-</div>
+<header>
+	<div id="wrapper-header">
+		<div>
+			<img src="assets/favicon.png" loading="lazy" /><h1>Instant Sounds JS</h1>
+		</div>
+		<button id="btn-filter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M15 2.75a.75.75 0 0 1-.75.75h-4a.75.75 0 0 1 0-1.5h4a.75.75 0 0 1 .75.75Zm-8.5.75v1.25a.75.75 0 0 0 1.5 0v-4a.75.75 0 0 0-1.5 0V2H1.75a.75.75 0 0 0 0 1.5H6.5Zm1.25 5.25a.75.75 0 0 0 0-1.5h-6a.75.75 0 0 0 0 1.5h6ZM15 8a.75.75 0 0 1-.75.75H11.5V10a.75.75 0 1 1-1.5 0V6a.75.75 0 0 1 1.5 0v1.25h2.75A.75.75 0 0 1 15 8Zm-9 5.25v-2a.75.75 0 0 0-1.5 0v1.25H1.75a.75.75 0 0 0 0 1.5H4.5v1.25a.75.75 0 0 0 1.5 0v-2Zm9 0a.75.75 0 0 1-.75.75h-6a.75.75 0 0 1 0-1.5h6a.75.75 0 0 1 .75.75Z"/></svg></button>
+
+		<div id="menu">
+			<div class="arrow"></div>
+			<input type="text" id="input-search" placeholder="Search sound" />
+			<ul id="categories">
+				<li><label><input type="radio" id="radio-category-all" name="category" checked /><span>All</span></label></li>
+			</ul>
+			<footer>
+				<a id="link-github" href="https://github.com/marcrobledo/instant-sounds-js" target="_blank">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 0 1 8 8 8.01 8.01 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38l.01-2.2c0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95a3.1 3.1 0 0 0-.82-2.15c.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82a7.42 7.42 0 0 0-4 0c-1.53-1.03-2.2-.82-2.2-.82a2.87 2.87 0 0 0-.08 2.12 3.11 3.11 0 0 0-.82 2.15c0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94l.01 1.49c0 .21-.15.45-.55.38A8 8 0 0 1 0 8a8 8 0 0 1 8-8Z"/></svg>
+					See on GitHub
+				</a><br/>
+				&copy; 2016-2025 Marc Robledo
+			</footer>
+		</div>
+	</div>
+</header>
 
 <div id="overlay"></div>
-<div id="menu"><ul id="ul-menu"></ul><div id="copy">&copy; 2016-2019 Marc Robledo</div></div>
 
 
 
-<div class="row" id="ul"></div>
+<div id="sound-buttons"></div>
 
 
 </body>
