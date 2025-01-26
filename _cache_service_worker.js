@@ -14,7 +14,7 @@
 */
 
 var PRECACHE_ID='instant-sounds-js';
-var PRECACHE_VERSION='v1e';
+var PRECACHE_VERSION='v1f';
 var PRECACHE_URLS=[
 	'index.html','./',
 	'manifest.json',

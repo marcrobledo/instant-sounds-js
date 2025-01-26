@@ -9,7 +9,7 @@
 			"density": "1.0"
 		},
 		{
-			"src": "assets/favicon_maskabel.png",
+			"src": "assets/favicon_maskable.png",
 			"sizes": "160x160",
 			"type": "image/png",
 			"purpose": "any maskable"
