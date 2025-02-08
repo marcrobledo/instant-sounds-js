@@ -111,6 +111,7 @@ const InstantSounds=(function(){
 			this.audio.addEventListener('canplaythrough', _onLoadAudio);
 			this.audio.addEventListener('error', _onErrorAudio);
 			this.audio.addEventListener('ended', _onFinishedAudio);
+			this.audio.load();
 		}
 	}
 
